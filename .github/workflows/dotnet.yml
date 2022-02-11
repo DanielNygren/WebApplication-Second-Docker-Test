@@ -32,7 +32,7 @@ jobs:
 
     
     - name: Building the Docker Image
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v2.9.0
       with:
         push: true
-        tags: learnetdaniel/WebApplication-Second-Docker-Test
+        tags: learnetdaniel/webapplicationseconddockertest
