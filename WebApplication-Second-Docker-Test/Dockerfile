@@ -1,24 +1,20 @@
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-focal AS base
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 8080
+EXPOSE 443
 
-ENV ASPNETCORE_URLS=http://+:8080
-
-# Creates a non-root user with an explicit UID and adds permission to access the /app folder
-# For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
-
-FROM mcr.microsoft.com/dotnet/sdk:5.0-focal AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["WebApplication-Second-Docker-Test/WebApplication-Second-Docker-Test.csproj", "WebApplication-Second-Docker-Test/"]
-RUN dotnet restore "WebApplication-Second-Docker-Test/WebApplication-Second-Docker-Test.csproj"
+COPY ["WebApplication-Second-Docker-Test.csproj", "/"]
+RUN dotnet restore "/WebApplication-Second-Docker-Test.csproj"
 COPY . .
-WORKDIR "/src/WebApplication-Second-Docker-Test"
+WORKDIR "/src/"
 RUN dotnet build "WebApplication-Second-Docker-Test.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "WebApplication-Second-Docker-Test.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "WebApplication-Second-Docker-Test.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

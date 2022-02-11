@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["WebApplication-Second-Docker-Test/WebApplication-Second-Docker-Test.csproj", "WebApplication-Second-Docker-Test/"]
-RUN dotnet restore "WebApplication-Second-Docker-Test/WebApplication-Second-Docker-Test.csproj"
+COPY ["WebApplication-Second-Docker-Test.csproj", "/"]
+RUN dotnet restore "/WebApplication-Second-Docker-Test.csproj"
 COPY . .
-WORKDIR "/src/WebApplication-Second-Docker-Test"
+WORKDIR "/src/"
 RUN dotnet build "WebApplication-Second-Docker-Test.csproj" -c Release -o /app/build
 
 FROM build AS publish
