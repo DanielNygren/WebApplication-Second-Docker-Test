@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: WebApplication-Second-Docker-Test/Dockerfile
     ports:
-      - 8080:8080
+      - 80:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
