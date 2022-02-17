@@ -37,15 +37,6 @@ jobs:
         push: true
         tags: learnetdaniel/webapplicationseconddockertest
 
-    - name: executing remote ssh commands using ssh key
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        script: kubectl rollout restart deployment webapptest2
-
     - name: Install Open VPN
       run: |
         sudo apt update
@@ -59,3 +50,14 @@ jobs:
         username:  ${{ secrets.OVPN_Username}}
         password: ${{ secrets.OVPN_Password}}
         client_key: ${{ secrets.OPEN_VPN_KEY}}
+
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: kubectl rollout restart deployment webapptest2
+
+    
