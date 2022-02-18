@@ -47,17 +47,25 @@ jobs:
       uses: "kota65535/github-openvpn-connect-action@v1"
       with:
         config_file: ./.github/vpn/config.ovpn
+        #Open vpn username
         username:  ${{ secrets.OVPN_Username}}
+        #Open vpn password
         password: ${{ secrets.OVPN_Password}}
+        #Open vpn key from profile.ovpn file
         client_key: ${{ secrets.OPEN_VPN_KEY}}
 
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
+        #IP to servic
         host: ${{ secrets.HOST }}
+        #Azure VM username
         username: ${{ secrets.USERNAME }}
+        #Azure VM Key
         key: ${{ secrets.KEY }}
+        #SSH conation port
         port: ${{ secrets.PORT }}
+        #Rollout update to webapp
         script: kubectl rollout restart deployment webapptest2
 
     
