@@ -66,6 +66,6 @@ jobs:
         #SSH conation port
         port: ${{ secrets.PORT }}
         #Rollout update to webapp
-        script: kubectl rollout restart deployment webapptest2
+        script: kubectl rollout restart deployment webapp
 
     
