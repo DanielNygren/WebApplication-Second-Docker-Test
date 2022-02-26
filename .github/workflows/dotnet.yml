@@ -41,9 +41,9 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Building and push the Docker Image
+    - name: Building the Docker Image
       #Build whit Docker image tag
-      run: docker build -t learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
+      run: docker build -rm -t learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
 
     - name: Pushing the Docker Image
       #Push whit Docker image tag
