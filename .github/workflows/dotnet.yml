@@ -43,11 +43,11 @@ jobs:
 
     - name: Building the Docker Image
       #Build whit Docker image tag
-      run: docker build -t --rm learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
+      run: docker build -t learnetdaniel/webapplicationseconddockertest:RELEASE_VERSIONEN .
 
     - name: Pushing the Docker Image
       #Push whit Docker image tag
-      run: docker push learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN
+      run: docker push learnetdaniel/webapplicationseconddockertest:RELEASE_VERSIONEN
 
     - name: Install Open VPN
       run: |
