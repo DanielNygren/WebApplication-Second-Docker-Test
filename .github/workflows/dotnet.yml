@@ -43,7 +43,7 @@ jobs:
 
     - name: Building the Docker Image
       #Build whit Docker image tag
-      run: docker build learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
+      run: docker build --tag learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
 
     - name: Pushing the Docker Image
       #Push whit Docker image tag
