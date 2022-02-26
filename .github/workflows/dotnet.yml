@@ -17,7 +17,7 @@ jobs:
     - name: Sätt versions-variabeln
       run: echo "RELEASE_VERSIONEN=$(echo ${GIT_MESSAGE} | grep -Po '(?<=--version=)[^;]+')" >> $GITHUB_ENV
       env:
-          GIT_MESSAGE: ${{github.event.head_commit.message}}
+        GIT_MESSAGE: ${{github.event.head_commit.message}}
 
     - name: Test
       run: echo $RELEASE_VERSIONEN
@@ -46,9 +46,9 @@ jobs:
       #Build whit Docker image tag
       run: docker build -t learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
 
-    - name: Pushing  the Docker Image
+    - name: Pushing the Docker Image
       #Push whit Docker image tag
-      run: docker push -t learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN
+      run: docker push learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN
 
     - name: Install Open VPN
       run: |
