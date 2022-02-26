@@ -38,13 +38,16 @@ jobs:
     - name: Loggar in på Docker
       uses: docker/login-action@v1
       with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and push the Docker Image
-      run: |
-        docker build -t learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
-        docker push learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN
+    - name: Building and push the Docker Image
+      #Build whit Docker image tag
+      run: docker build -t learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
+
+    - name: Pushing the Docker Image
+      #Push whit Docker image tag
+      run: docker push learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN
 
     - name: Install Open VPN
       run: |
