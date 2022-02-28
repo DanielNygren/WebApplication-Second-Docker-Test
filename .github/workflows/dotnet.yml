@@ -15,7 +15,7 @@ jobs:
     - name: Check out 
       uses: actions/checkout@v2
 
-    #version 0.0.1
+    #version 0.1.1
     - name: Sätt versions-variabeln
       run: echo "RELEASE_VERSIONEN=$(echo ${GIT_MESSAGE} | grep -Po '(?<=--version=)[^;]+')" >> $GITHUB_ENV
       env:
