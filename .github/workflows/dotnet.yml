@@ -15,12 +15,13 @@ jobs:
     - name: Check out 
       uses: actions/checkout@v2
 
-    #version add --version=
+      #version add --version=(verion number) to commit message
     - name: Sätt versions-variabeln
       run: echo "RELEASE_VERSIONEN=$(echo ${GIT_MESSAGE} | grep -Po '(?<=--version=)[^;]+')" >> $GITHUB_ENV
       env:
         GIT_MESSAGE: ${{github.event.head_commit.message}}
 
+      #checks so release version is setup correct
     - name: Test
       run: echo $RELEASE_VERSIONEN
 
@@ -44,11 +45,11 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Building the Docker Image
-      #Build whit Docker image tag
+      #Build whit Docker and version tag
       run: docker build -t learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
 
     - name: Pushing the Docker Image
-      #Push whit Docker image tag
+      #Push whit Docker and version tag
       run: docker push learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN
 
     - name: Install Open VPN
