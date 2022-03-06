@@ -44,6 +44,13 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Building the Docker Image och skickar den till Docker Hub
+      #Build and push Docker image latest
+      uses: docker/build-push-action@v2.9.0
+      with:
+        push: true
+        tags: learnetdaniel/webapplicationseconddockertest
+
     - name: Building the Docker Image
       #Build whit Docker and version tag
       run: docker build -t learnetdaniel/webapplicationseconddockertest:$RELEASE_VERSIONEN .
